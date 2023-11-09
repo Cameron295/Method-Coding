@@ -1,18 +1,31 @@
 
 
 
-// cart edited
+#cart
+class Cart:
+    def __init__(self, databaseName, tableName):
+        self.databaseName = databaseName
+        self.tableName = tableName
+    
+    def viewCart(self, userID, inventoryDatabase):
+        
+    def addToCart(self, userID, ISBN):
+      
+    def removeFromCart(self, userID, ISBN):
+
+    def checkOut(self, userID):
+        
+    
+
+
+#inventory
 
 
 
-//inventory
+
+
+#user
 
 
 
-
-
-//user
-
-
-
-//main
+#main
