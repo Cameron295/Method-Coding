@@ -26,6 +26,32 @@ class Cart:
 
 #user
 
+class User:
+
+
+    def login()
+
+    def logout()
+
+    def viewAccountInformation()
+
+    def createAccount()
+
+    def getLoggedIn()
+
+    def getUserID()
+
+
+
+
+
+
 
 
 #main
+
+
+
+
+
+
