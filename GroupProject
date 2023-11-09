@@ -28,18 +28,23 @@ class Cart:
 
 class User:
 
+    def __init__(self, databaseName, tableName, loggedIn, userID):
+        self.databaseName = databaseName
+        self.tableName = tableName
+        self.loggedIn = loggedIn
+        self.userID = userID
 
-    def login()
+    def login():
 
-    def logout()
+    def logout():
 
-    def viewAccountInformation()
+    def viewAccountInformation():
 
-    def createAccount()
+    def createAccount():
 
-    def getLoggedIn()
+    def getLoggedIn():
 
-    def getUserID()
+    def getUserID():
 
 
 
