@@ -62,9 +62,10 @@ class User:
         return False
 
     def viewAccountInformation():
+        # view all in table with useID in SQL
 
     def createAccount():
-        #will insert into tanle SQL
+        #will insert new info into table SQL
 
     def getLoggedIn():
 
