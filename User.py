@@ -4,7 +4,7 @@ import sys
 class User:
     con = None
     c = None
-    #new commt
+   
     def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
         self.tableName = tableName
