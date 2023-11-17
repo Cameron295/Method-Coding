@@ -1,3 +1,6 @@
+import sqlite3
+import sys
+
 class Inventory:
     def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
