@@ -67,7 +67,9 @@ class User:
 
     def getLoggedIn():
 
+        return self.loggedIn
+
     def getUserID():
 
-
+        return self.userID
 
