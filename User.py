@@ -1,13 +1,20 @@
 class User:
 
-    def __init__(self, databaseName, tableName, loggedIn, userID):
+    def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
         self.tableName = tableName
-        self.loggedIn = loggedIn
-        self.userID = userID
+        self.loggedIn = False
+        self.userID = ""
 
+    def __init__(self):
+        self.databaseName = ""
+        self.tableName = ""
+        self.loggedIn = False
+        self.userID = ""
+        
     def login():
-
+        
+    
     def logout():
 
     def viewAccountInformation():
@@ -17,3 +24,6 @@ class User:
     def getLoggedIn():
 
     def getUserID():
+
+
+
