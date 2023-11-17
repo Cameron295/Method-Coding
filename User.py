@@ -5,7 +5,7 @@ class User:
         self.tableName = tableName
         self.loggedIn = False
         self.userID = ""
-
+        con = sqlit3
     def __init__(self):
         self.databaseName = ""
         self.tableName = ""
