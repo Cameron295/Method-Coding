@@ -1,1 +1,1 @@
-
+class Inventory:
