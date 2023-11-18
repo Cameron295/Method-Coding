@@ -79,9 +79,10 @@ class User:
         Payment input ("Payment: ") 
 
          cmd = """ 
-         INSERT INTO %s VALUES(%s, $s,%s,%s,%s,%s,%s,%s,%s);
+         INSERT INTO %s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
 
          """
+        cursor.execute(cmd, (self.tableName, UserID,Email, Password, FirstName, Lastname, Address, City, State, Zip, Payment))
 
     def getLoggedIn():
 
