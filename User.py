@@ -2,7 +2,7 @@ import sqlite3
 import sys
 
 class User:
-    con = None
+    connection = None
     c = None
    
     def __init__(self, databaseName, tableName):
@@ -10,8 +10,8 @@ class User:
         self.tableName = tableName
         self.loggedIn = False
         self.userID = ""
-        con = sqlite3(databasename)
-        c = con.cursor()
+        connection = sqlite3(databasename)
+        c = connection.cursor()
         cmd= "CREATE TABLE IF NOT EXISTS "+ tableName + """ 
         ( UserID varchar(255),
         Email varchar(255), 
@@ -26,7 +26,7 @@ class User:
         PRIMARY KEY (UserID) );
         """
         c.execute(cmd)
-        con.commit()
+        connection.commit()
         
         
     def __init__(self):
