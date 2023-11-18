@@ -63,7 +63,15 @@ class User:
 
     def viewAccountInformation():
         # view all in table with useID in SQL
+         Username= input("UserID: ")
 
+        cmd = """ 
+         Create View %s AS 
+         SELECT  UserID,Email, Password, FirstName, Lastname, Address, City, State, Zip, Payment
+         From %s 
+         Where UserID ="%s";
+         """
+        cursor.execute(cmd, (self.tableName,????, Username))
     def createAccount():
         #will insert new info into table SQL
 
