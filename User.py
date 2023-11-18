@@ -67,6 +67,22 @@ class User:
     def createAccount():
         #will insert new info into table SQL
 
+        UserID = input ("UserID: ")
+        Email input ("Email: ") 
+        Password input ("Password: ")
+        FirstName input ("First Name: ")
+        LastName input ("Last Name: ")
+        Address input ("Address: ")
+        City input ("City: ")
+        State input ("State: ")
+        Zip input ("Zip: ") 
+        Payment input ("Payment: ") 
+
+         cmd = """ 
+         INSERT INTO %s VALUES(%s, $s,%s,%s,%s,%s,%s,%s,%s);
+
+         """
+
     def getLoggedIn():
 
         return self.loggedIn
