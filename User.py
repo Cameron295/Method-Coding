@@ -46,7 +46,7 @@ class User:
 
         """
          cursor.execute(cmd, (self.tableName, username, ))
-        DatabasePasswords = c.fetchall()
+        DatabasePasswords = cursor.fetchall()
         
         if len(DatabasePassword)!=0 and password == DatabasePasswords[0]: 
             self.userID = username
