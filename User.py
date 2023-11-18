@@ -3,15 +3,15 @@ import sys
 
 class User:
     connection = None
-    c = None
+    cursor = None
    
     def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
         self.tableName = tableName
         self.loggedIn = False
         self.userID = ""
-        connection = sqlite3(databasename)
-        c = connection.cursor()
+        connection = sqlite3("databasename")
+        cursor = connection.cursor()
         cmd= "CREATE TABLE IF NOT EXISTS "+ tableName + """ 
         ( UserID varchar(255),
         Email varchar(255), 
@@ -25,7 +25,7 @@ class User:
         Payment varchar(255), 
         PRIMARY KEY (UserID) );
         """
-        c.execute(cmd)
+        cursor.execute(cmd)
         connection.commit()
         
         
@@ -45,7 +45,7 @@ class User:
         WHERE UserID = %s ;
 
         """
-        c.execute(cmd, (self.tableName, username, ))
+         cursor.execute(cmd, (self.tableName, username, ))
         DatabasePasswords = c.fetchall()
         
         if len(DatabasePassword)!=0 and password == DatabasePasswords[0]: 
