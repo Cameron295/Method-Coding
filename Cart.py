@@ -1,3 +1,6 @@
+import sqlite3
+import sys
+
 class Cart:
     def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
