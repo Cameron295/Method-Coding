@@ -10,7 +10,7 @@ import sys
 
 
 
-CREATE TABLE   tableName 
+CREATE TABLE   User 
         ( UserID varchar(255),
         Email varchar(255), 
         Password varchar(255),
