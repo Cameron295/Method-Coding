@@ -44,3 +44,14 @@ CREATE TABLE   User
         Zip varchar(255), 
         Payment varchar(255), 
         PRIMARY KEY (UserID) );
+
+CREATE TABLE   Inventory 
+        ( ISBN varchar(255),
+        Title varchar(255), 
+        Author varchar(255),
+        Genre varchar(255),
+        Pages varchar(255),
+        ReleaseDate varchar(255),
+        Stock int,
+        PRIMARY KEY (ISBN) );
+       
