@@ -18,10 +18,13 @@ class Inventory:
     # asks for a title from the user, then checks for any matches in the database and returns the result
     # if it's a successful search, displays all results to user. If unsuccessful, informs the user their search failed.
     def searchInventory():
+        # taking search input from user
         title = input("Search Title: ")
-        
+
+        # successful search
         if:
 
+        # unsuccessful search
         else:
             print("Your search failed to return any results. Check your spelling or try again with a different title.")
         
