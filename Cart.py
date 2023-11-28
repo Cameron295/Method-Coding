@@ -1,5 +1,5 @@
 import sqlite3
-import sys
+from Inventory import Inventory
 
 class Cart:
     def __init__(self, databaseName, tableName):
@@ -7,7 +7,11 @@ class Cart:
         self.tableName = tableName
     
     def viewCart(self, userID, inventoryDatabase):
-        
+        connection = sqlite3.connect("databasename")
+        cursor = connection.cursor()
+        cursor.execute("SELECT Title FROM inventory AS i, cart AS c WHERE c.UserID=%s AND c.ISBN=i.ISBN" % (userID))
+        cursor.close()
+        connection.close()
     def addToCart(self, userID, ISBN):
         #doesn't handle quantity yet
         connection = sqlite3.connect("databaseName")
@@ -27,3 +31,5 @@ class Cart:
         cursor.close()
         connection.close()
     def checkOut(self, userID):
+        connection = sqlite3.connect("databaseName")
+        cursor = connection.cursor()
