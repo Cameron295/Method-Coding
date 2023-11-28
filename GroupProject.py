@@ -15,16 +15,16 @@ while menu
                   if ans=="1":
 
 
-                elis ans=="2":
+                elif ans=="2":
 
 
-                elis ans=="3":
+                elif ans=="3":
 
 
-                elis ans=="4":
+                elif ans=="4":
                 break
 
-                el :
+                else :
                 print ("/n Not a Valid Choice Try agin")
 
 
