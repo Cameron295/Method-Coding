@@ -14,12 +14,16 @@ while menu
        ans= input("please select a number: ")
                   if ans=="1":
 
+                  login()
+
+                  while 
+
 
                 elif ans=="2":
-
+                     createAccount()
 
                 elif ans=="3":
-
+                     logout()
 
                 elif ans=="4":
                 break
