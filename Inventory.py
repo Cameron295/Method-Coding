@@ -37,3 +37,9 @@ class Inventory:
         
     # decreases stock number of the given ISBN's respective item
     def decreaseStock(ISBN):
+        # connection and cursor variables
+        sqConn = sqlite3.connect('databaseName.db')
+        sqCur = sqConn.cursor()
+        
+        sqCur.execute(UPDATE Inventory SET Stock = Stock - 1 WHERE ISBN)
+        
