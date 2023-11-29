@@ -40,6 +40,7 @@ class Inventory:
         # connection and cursor variables
         sqConn = sqlite3.connect('databaseName.db')
         sqCur = sqConn.cursor()
-        
+
+        # updating stock
         sqCur.execute(UPDATE Inventory SET Stock = Stock - 1 WHERE ISBN)
         
