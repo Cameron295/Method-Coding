@@ -43,10 +43,34 @@ while True:
                     print("viewing cart")
                 elif choice3 == "3":
                     #Add to Cart
-                    print("adding to cart")
+                    connection = sqlite3.connect("bookstore.db")
+                    cursor = connection.cursor()
+                    print("What is the ISBN of the book you would like to add?")
+                    book = str(input())
+                    cursor.execute("SELECT TITLE, ISBN FROM Inventory WHERE ISBN=\"%s\"" % (book))
+                    x = cursor.fetchall()
+                    try:
+                         cart.addToCart("USERID GOES HERE", x[0][1])
+                         print("%s was added to your cart." % (x[0][0]))
+                    except:
+                         print("That book does not exist.")
+                    cursor.close()
+                    connection.close()
                 elif choice3 == "4":
                     #Remove from Cart
-                    print("removing from cart")
+                    connection = sqlite3.connect("bookstore.db")
+                    cursor = connection.cursor()
+                    print("What is the ISBN of the book you would like to remove?")
+                    book = str(input())
+                    cursor.execute("SELECT * FROM inventory AS i, cart AS c WHERE c.UserID = %s AND c.ISBN=\"%s\" AND c.ISBN=i.ISBN" % (USERID HERE, book))
+                    x = cursor.fetchall()
+                    try:
+                         cart.removeFromCart(USERID HERE, x[0][0])
+                         print("%s was removed from your cart." % (x[0][1]))
+                    except:
+                         print("That book is not in your cart")
+                    cursor.close()
+                    connection.close()
                 elif choice3 == "5":
                     #Checkout
                     print("checking out")
