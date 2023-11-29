@@ -45,10 +45,11 @@ while True:
                     print("Returning to main menu...")
                 elif choice3 == "2":
                     #View Cart
+                    cart.viewCart(USERID HERE, "Inventory")
                     print("Viewing cart...")
                 elif choice3 == "3":
                     #Add to Cart
-                    connection = sqlite3.connect("bookstore.db")
+                    connection = sqlite3.connect("group8.db")
                     cursor = connection.cursor()
                     # taking input selection from user for ISBN, recorded into variable "book"
                     print("What is the ISBN of the book you would like to add?")
@@ -64,7 +65,7 @@ while True:
                     connection.close()
                 elif choice3 == "4":
                     #Remove from Cart
-                    connection = sqlite3.connect("bookstore.db")
+                    connection = sqlite3.connect("group8.db")
                     cursor = connection.cursor()
                     # taking input selection from the user for ISBN, recorded into variable "book"
                     print("What is the ISBN of the book you would like to remove?")

@@ -7,6 +7,7 @@ class Cart:
     def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
         self.tableName = tableName
+
     def viewCart(self, userID, inventoryDatabase):
         connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
@@ -17,6 +18,7 @@ class Cart:
                 print(y)
         cursor.close()
         connection.close()
+
     def addToCart(self, userID, ISBN):
         connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
@@ -30,6 +32,7 @@ class Cart:
         connection.commit()
         cursor.close()
         connection.close()
+
     def removeFromCart(self, userID, ISBN):
         connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
@@ -45,6 +48,7 @@ class Cart:
         connection.commit()
         cursor.close()
         connection.close()
+        
     def checkOut(self, userID):
         connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
