@@ -42,5 +42,5 @@ class Inventory:
         sqCur = sqConn.cursor()
 
         # updating stock
-        sqCur.execute(UPDATE Inventory SET Stock = Stock - 1 WHERE ISBN)
+        sqCur.execute(UPDATE Inventory SET Stock = Stock - 1 WHERE ISBN=%s)
         
