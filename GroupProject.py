@@ -4,13 +4,16 @@ import sys
 
 #main
 while True:
+    # menu options for logging in, creating an account, and logging out
     print("1.Login\n2.Create account\n3.Logout")
+    # user input
     choice = str(input())
     if choice == "1":
         #Login function
         print("Logged in.")
         #Main Menu
         while True:
+            # menu options for logging out, looking at account information, viewing inventory information, and accessing the cart
             print("1.Logout\n2.Account\n3.Inventory\n4.Cart")
             choice2 = str(input())
             if choice2 == "1":
@@ -21,6 +24,7 @@ while True:
                 #View Account Information
                 print("Account Info")
             elif choice2 == "3":
+                # menu options for returning to the last page, viewing inventory, and searching inventory
                 print("1.Go Back\n2.View Inventory\n3.Search Inventory")
                 choice3 = str(input())
                 if choice3 == "1":
@@ -34,6 +38,7 @@ while True:
                 else:
                     print("Invalid menu option, returning to main menu...")
             elif choice2 == "4":
+                # menu options for returning to the last page, viewing cart, adding/removing an item from the cart, and checking out
                 print("1.Go Back\n2.View Cart\n3.Add to Cart\n4.Remove from Cart\n5.Check Out")
                 choice3 = str(input())
                 if choice3 == "1":
@@ -45,6 +50,7 @@ while True:
                     #Add to Cart
                     connection = sqlite3.connect("bookstore.db")
                     cursor = connection.cursor()
+                    # taking input selection from user for ISBN, recorded into variable "book"
                     print("What is the ISBN of the book you would like to add?")
                     book = str(input())
                     cursor.execute("SELECT TITLE, ISBN FROM Inventory WHERE ISBN=\"%s\"" % (book))
@@ -60,6 +66,7 @@ while True:
                     #Remove from Cart
                     connection = sqlite3.connect("bookstore.db")
                     cursor = connection.cursor()
+                    # taking input selection from the user for ISBN, recorded into variable "book"
                     print("What is the ISBN of the book you would like to remove?")
                     book = str(input())
                     cursor.execute("SELECT * FROM inventory AS i, cart AS c WHERE c.UserID = %s AND c.ISBN=\"%s\" AND c.ISBN=i.ISBN" % (USERID HERE, book))
