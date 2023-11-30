@@ -161,7 +161,6 @@ class User:
 
         return self.userID
 
-
 #CART CLASS
 class Cart:
     def __init__(self, databaseName, tableName):
@@ -225,7 +224,7 @@ class Cart:
             for x in result:
                 for y in range(x[2]):
                     #decrease stock using inventory class function
-                    decreaseStock(ISBN)
+                    inventory.decreaseStock(x[0])
                     cursor.execute("SELECT Quantity FROM cart WHERE UserID=%s AND ISBN=\"%s\"" % (x[1], x[0]))
                     quantity = cursor.fetchall()
                     try:
@@ -241,6 +240,7 @@ class Cart:
 
 
 #main
+inventory = Inventory("group8.db", "Inventory")
 cart = Cart("group8.db", "Cart")
 while True:
     # menu options for logging in, creating an account, and logging out
@@ -275,11 +275,11 @@ while True:
                 elif choice3 == "2":
                     #View Inventory function
                     print("Viewing inventory...")
-                    viewInventory()
+                    inventory.viewInventory()
                 elif choice3 == "3":
                     #Search Inventory function
                     print("Searching inventory...")
-                    searchInventory()
+                    inventory.searchInventory()
                 else:
                     print("Invalid menu option, returning to main menu...")
             elif choice2 == "4":
