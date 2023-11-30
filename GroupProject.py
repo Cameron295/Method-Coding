@@ -325,7 +325,7 @@ while True:
                     connection.close()
                 elif choice3 == "5":
                     #Checkout
-                    cart.checkOut(USERID HERE)
+                    Cart.checkOut(USERID HERE)
                 else:
                     print("Invalid menu option, returning to main menu...")
             else:
