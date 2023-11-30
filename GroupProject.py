@@ -7,6 +7,21 @@ class Inventory:
         self.databaseName = databaseName
         self.tableName = tableName
 
+        sqConn = sqlite3("databaseName")
+        sqCur = sqConn.cursor()
+        cmd= "CREATE TABLE IF NOT EXISTS "+ tableName + """ 
+        ( ISBN varchar(255),
+        Title varchar(255), 
+        Author varchar(255),
+        Genre varchar(255),
+        Pages varchar(255),
+        ReleaseDate varchar(255),
+        Stock int,
+        PRIMARY KEY (ISBN) );
+        """
+        sqCur.execute(cmd)
+        sqConn.commit()
+
     # displays all items currently in the inventory
     def viewInventory():
         # connection and cursor variables
