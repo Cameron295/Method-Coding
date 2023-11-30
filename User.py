@@ -10,7 +10,7 @@ class User:
         self.tableName = tableName
         self.loggedIn = False
         self.userID = ""
-        connection = sqlite3("databasename")
+        connection = sqlite3.connect("databasename")
         cursor = connection.cursor()
         cmd= "CREATE TABLE IF NOT EXISTS "+ tableName + """ 
         ( UserID varchar(255),
@@ -36,6 +36,8 @@ class User:
         self.userID = ""
         
     def login():
+        connection = sqlite3.connect("databasename")
+        cursor = connection.cursor()
         #get username and password from user
         username= input("UserID: ")
         password= input("Password: ") 
@@ -62,6 +64,8 @@ class User:
         return False
 
     def viewAccountInformation():
+        connection = sqlite3.connect("databasename")
+        cursor = connection.cursor()
         # view all in table with useID in SQL
          Username= input("UserID: ")
 
@@ -73,6 +77,8 @@ class User:
          """
         cursor.execute(cmd, (self.tableName,User, Username))
     def createAccount():
+        connection = sqlite3.connect("databasename")
+        cursor = connection.cursor()
         #will insert new info into table SQL
 
         UserID = input ("UserID: ")
