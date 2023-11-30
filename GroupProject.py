@@ -242,7 +242,7 @@ class Cart:
 #main
 inventory = Inventory("group8.db", "Inventory")
 cart = Cart("group8.db", "Cart")
-user= User("group8.db", "Cart")
+user= User("group8.db", "User")
 while True:
     # menu options for logging in, creating an account, and logging out
     print("1.Login\n2.Create account\n3.Logout")
