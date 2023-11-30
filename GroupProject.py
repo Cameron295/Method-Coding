@@ -41,7 +41,7 @@ class Inventory:
         # taking search input from user
         search_title = input("Search Title: ")
 
-        search_return = sqCur.execute("SELECT * FROM Inventory WHERE Title LIKE "%" + search_title + "%"")
+        search_return = sqCur.execute("SELECT * FROM Inventory WHERE Title LIKE "%" + %s + "%"" % (search_title))
         
         # successful search
         if search_return != None:
