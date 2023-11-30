@@ -132,7 +132,7 @@ class User:
          From %s 
          Where UserID ="%s";
          """
-        cursor.execute(cmd, (self.tableName,????, Username))
+        cursor.execute(cmd, (self.tableName, User, Username))
     def createAccount():
         #will insert new info into table SQL
 
