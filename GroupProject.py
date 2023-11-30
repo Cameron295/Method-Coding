@@ -41,7 +41,7 @@ class Inventory:
         # taking search input from user
         search_title = input("Search Title: ")
 
-        search_return = sqCur.execute("SELECT * FROM Inventory WHERE Title LIKE "%" + search_title + "%"")
+        search_return = sqCur.execute("SELECT * FROM Inventory WHERE Title LIKE "%" + %s + "%"" % (search_title))
         
         # successful search
         if search_return != None:
@@ -132,7 +132,7 @@ class User:
          From %s 
          Where UserID ="%s";
          """
-        cursor.execute(cmd, (self.tableName,????, Username))
+        cursor.execute(cmd, (self.tableName, User, Username))
     def createAccount():
         #will insert new info into table SQL
 
@@ -242,6 +242,7 @@ class Cart:
 #main
 inventory = Inventory("group8.db", "Inventory")
 cart = Cart("group8.db", "Cart")
+user= User("group8.db", "User")
 while True:
     # menu options for logging in, creating an account, and logging out
     print("1.Login\n2.Create account\n3.Logout")
@@ -249,7 +250,7 @@ while True:
     choice = str(input())
     if choice == "1":
         #Login function
-        User.login()
+        user.login()
         print("Logged in.")
         #Main Menu
         while True:
@@ -258,13 +259,13 @@ while True:
             choice2 = str(input())
             if choice2 == "1":
                 #Logout
-                User.logout()
+                user.logout()
                 print("Logging out...")
                 break
             elif choice2 == "2":
                 #View Account Information
                 print("Account Info:")
-                User.viewAccountInformation()
+                user.viewAccountInformation()
                 
             elif choice2 == "3":
                 # menu options for returning to the last page, viewing inventory, and searching inventory
@@ -333,11 +334,11 @@ while True:
                 print("Invalid option. Try again.")
     elif choice == "2":
         #Account Creation
-        User.createAccount()
+        user.createAccount()
         print("Account created.")
     elif choice == "3":
         #Logout
-        User.logout()
+        user.logout()
         print("Logged out.")
         break
     else:
