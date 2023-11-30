@@ -63,8 +63,7 @@ class Inventory:
 
 #USER CLASS
 class User:
-    connection = None
-    cursor = None
+    
    
     def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
@@ -97,6 +96,8 @@ class User:
         self.userID = ""
         
     def login():
+        connection = sqlite3("databasename")
+        cursor = connection.cursor()
         #get username and password from user
         username= input("UserID: ")
         password= input("Password: ") 
@@ -123,6 +124,8 @@ class User:
         return False
 
     def viewAccountInformation():
+        connection = sqlite3("databasename")
+        cursor = connection.cursor()
         # view all in table with useID in SQL
          Username= input("UserID: ")
 
@@ -134,6 +137,8 @@ class User:
          """
         cursor.execute(cmd, (self.tableName, User, Username))
     def createAccount():
+        connection = sqlite3("databasename")
+        cursor = connection.cursor()
         #will insert new info into table SQL
 
         UserID = input ("UserID: ")
