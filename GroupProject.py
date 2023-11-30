@@ -7,7 +7,7 @@ class Inventory:
         self.databaseName = databaseName
         self.tableName = tableName
 
-        sqConn = sqlite3("databaseName")
+        sqConn = sqlite3.connect(self.databaseName)
         sqCur = sqConn.cursor()
         cmd= "CREATE TABLE IF NOT EXISTS "+ tableName + """ 
         ( ISBN varchar(255),
@@ -23,9 +23,9 @@ class Inventory:
         sqConn.commit()
 
     # displays all items currently in the inventory
-    def viewInventory():
+    def viewInventory(self):
         # connection and cursor variables
-        sqConn = sqlite3.connect('databaseName.db')
+        sqConn = sqlite3.connect(self.databaseName)
         sqCur = sqConn.cursor()
     
         sqCur.execute("SELECT * FROM Inventory")
@@ -33,9 +33,9 @@ class Inventory:
     
     # asks for a title from the user, then checks for any matches in the database and returns the result
     # if it's a successful search, displays all results to user. If unsuccessful, informs the user their search failed.
-    def searchInventory():
+    def searchInventory(self):
         # connection and cursor variables
-        sqConn = sqlite3.connect('databaseName.db')
+        sqConn = sqlite3.connect(self.databaseName)
         sqCur = sqConn.cursor()
         
         # taking search input from user
@@ -52,9 +52,9 @@ class Inventory:
             print("Your search failed to return any results. Check your spelling or try again with a different title.")
         
     # decreases stock number of the given ISBN's respective item
-    def decreaseStock(ISBN):
+    def decreaseStock(self, ISBN):
         # connection and cursor variables
-        sqConn = sqlite3.connect('databaseName.db')
+        sqConn = sqlite3.connect(self.databaseName)
         sqCur = sqConn.cursor()
 
         # updating stock
@@ -70,33 +70,9 @@ class User:
         self.tableName = tableName
         self.loggedIn = False
         self.userID = ""
-        connection = sqlite3("databasename")
-        cursor = connection.cursor()
-        cmd= "CREATE TABLE IF NOT EXISTS "+ tableName + """ 
-        ( UserID varchar(255),
-        Email varchar(255), 
-        Password varchar(255),
-        FirstName varchar(255),
-        LastName varchar(255),
-        Address varchar(255),
-        City varchar(255),
-        State varchar(255),
-        Zip varchar(255), 
-        Payment varchar(255), 
-        PRIMARY KEY (UserID) );
-        """
-        cursor.execute(cmd)
-        connection.commit()
         
-        
-    def __init__(self):
-        self.databaseName = ""
-        self.tableName = ""
-        self.loggedIn = False
-        self.userID = ""
-        
-    def login():
-        connection = sqlite3.connect("databasename")
+    def login(self):
+        connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
         #get username and password from user
         username= input("UserID: ")
@@ -110,21 +86,21 @@ class User:
         cursor.execute(cmd, (self.tableName, username, ))
         DatabasePasswords = cursor.fetchall()
         
-        if len(DatabasePassword)!=0 and password == DatabasePasswords[0]: 
+        if len(DatabasePasswords)!=0 and password == DatabasePasswords[0]: 
             self.userID = username
             self.loggedIn = True
             return True
 
         else: 
             return False
-    def logout():
+    def logout(self):
 
         self.userID = ""
         self.loggedIn = False
         return False
 
-    def viewAccountInformation():
-        connection = sqlite3.connect("databasename")
+    def viewAccountInformation(self):
+        connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
         # view all in table with useID in SQL
         Username= input("UserID: ")
@@ -136,8 +112,8 @@ class User:
          Where UserID ="%s";
          """
         cursor.execute(cmd, (self.tableName, User, Username))
-    def createAccount():
-        connection = sqlite3.connect("databasename")
+    def createAccount(self):
+        connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
         #will insert new info into table SQL
 
@@ -158,11 +134,11 @@ class User:
          """
         cursor.execute(cmd, (self.tableName, UserID,Email, Password, FirstName, Lastname, Address, City, State, Zip, Payment))
 
-    def getLoggedIn():
+    def getLoggedIn(self):
 
         return self.loggedIn
 
-    def getUserID():
+    def getUserID(self):
 
         return self.userID
 
