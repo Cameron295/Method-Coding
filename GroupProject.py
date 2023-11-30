@@ -28,7 +28,7 @@ class Inventory:
         sqConn = sqlite3.connect('databaseName.db')
         sqCur = sqConn.cursor()
     
-        sqCur.execute(SELECT * FROM Inventory)
+        sqCur.execute("SELECT * FROM Inventory")
         print(sqCur.fetchall())
     
     # asks for a title from the user, then checks for any matches in the database and returns the result
@@ -41,7 +41,7 @@ class Inventory:
         # taking search input from user
         search_title = input("Search Title: ")
 
-        search_return = sqCur.execute(SELECT * FROM Inventory WHERE Title LIKE "%" + search_title + "%")
+        search_return = sqCur.execute("SELECT * FROM Inventory WHERE Title LIKE "%" + search_title + "%"")
         
         # successful search
         if search_return != None:
@@ -58,7 +58,7 @@ class Inventory:
         sqCur = sqConn.cursor()
 
         # updating stock
-        sqCur.execute(UPDATE Inventory SET Stock = Stock - 1 WHERE ISBN=%s)
+        sqCur.execute("UPDATE Inventory SET Stock = Stock - 1 WHERE ISBN=%s" % (ISBN))
 
 
 #USER CLASS
