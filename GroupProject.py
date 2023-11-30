@@ -258,13 +258,13 @@ while True:
             choice2 = str(input())
             if choice2 == "1":
                 #Logout
-                 User.logout()
+                User.logout()
                 print("Logging out...")
                 break
             elif choice2 == "2":
                 #View Account Information
                 print("Account Info:")
-                 User.viewAccountInformation()
+                User.viewAccountInformation()
                 
             elif choice2 == "3":
                 # menu options for returning to the last page, viewing inventory, and searching inventory
@@ -332,11 +332,11 @@ while True:
                 print("Invalid option. Try again.")
     elif choice == "2":
         #Account Creation
-         User.createAccount()
+        User.createAccount()
         print("Account created.")
     elif choice == "3":
         #Logout
-         User.logout()
+        User.logout()
         print("Logged out.")
         break
     else:
