@@ -46,7 +46,6 @@ while True:
                 elif choice3 == "2":
                     #View Cart
                     cart.viewCart(USERID HERE, "Inventory")
-                    print("Viewing cart...")
                 elif choice3 == "3":
                     #Add to Cart
                     connection = sqlite3.connect("group8.db")
@@ -81,7 +80,7 @@ while True:
                     connection.close()
                 elif choice3 == "5":
                     #Checkout
-                    print("Checking out...")
+                    cart.checkOut(USERID HERE)
                 else:
                     print("Invalid menu option, returning to main menu...")
             else:
