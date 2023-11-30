@@ -224,7 +224,8 @@ class Cart:
             print("Checking out...")
             for x in result:
                 for y in range(x[2]):
-                    #decrease stock not yet added from inventory class
+                    #decrease stock using inventory class function
+                    decreaseStock(ISBN)
                     cursor.execute("SELECT Quantity FROM cart WHERE UserID=%s AND ISBN=\"%s\"" % (x[1], x[0]))
                     quantity = cursor.fetchall()
                     try:
@@ -262,7 +263,7 @@ while True:
                 break
             elif choice2 == "2":
                 #View Account Information
-                print("Account Info")
+                print("Account Info:")
                 viewAccountInformation()
                 
             elif choice2 == "3":
@@ -272,11 +273,13 @@ while True:
                 if choice3 == "1":
                     print("Returning to main menu...")
                 elif choice3 == "2":
-                    #View Inventory
+                    #View Inventory function
                     print("Viewing inventory...")
+                    viewInventory()
                 elif choice3 == "3":
-                    #Search Inventory
+                    #Search Inventory function
                     print("Searching inventory...")
+                    searchInventory()
                 else:
                     print("Invalid menu option, returning to main menu...")
             elif choice2 == "4":
