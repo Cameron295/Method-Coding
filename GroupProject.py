@@ -132,7 +132,7 @@ class User:
          INSERT INTO %s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
 
          """
-        cursor.execute(cmd, (self.tableName, UserID,Email, Password, FirstName, Lastname, Address, City, State, Zip, Payment))
+        cursor.execute(cmd, (self.tableName, UserID,Email, Password, FirstName, LastName, Address, City, State, Zip, Payment))
 
     def getLoggedIn(self):
 
