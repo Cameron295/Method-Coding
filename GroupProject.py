@@ -107,7 +107,7 @@ class User:
         WHERE UserID = %s ;
 
         """
-         cursor.execute(cmd, (self.tableName, username, ))
+        cursor.execute(cmd, (self.tableName, username, ))
         DatabasePasswords = cursor.fetchall()
         
         if len(DatabasePassword)!=0 and password == DatabasePasswords[0]: 
@@ -127,7 +127,7 @@ class User:
         connection = sqlite3.connect("databasename")
         cursor = connection.cursor()
         # view all in table with useID in SQL
-         Username= input("UserID: ")
+        Username= input("UserID: ")
 
         cmd = """ 
          Create View %s AS 
@@ -152,7 +152,7 @@ class User:
         Zip input ("Zip: ") 
         Payment input ("Payment: ") 
 
-         cmd = """ 
+        cmd = """ 
          INSERT INTO %s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
 
          """
