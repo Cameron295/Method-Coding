@@ -81,22 +81,22 @@ class User:
         cursor = connection.cursor()
         #will insert new info into table SQL
 
-        UserID = input ("UserID: ")
-        Email = input ("Email: ") 
-        Password = input ("Password: ")
-        FirstName = input ("First Name: ")
-        LastName = input ("Last Name: ")
-        Address = input ("Address: ")
-        City = input ("City: ")
-        State = input ("State: ")
-        Zip = input ("Zip: ") 
-        Payment = input ("Payment: ") 
+        userID = input ("UserID: ")
+        email = input ("Email: ") 
+        password = input ("Password: ")
+        firstName = input ("First Name: ")
+        lastName = input ("Last Name: ")
+        address = input ("Address: ")
+        city = input ("City: ")
+        state = input ("State: ")
+        zip = input ("Zip: ") 
+        payment = input ("Payment: ") 
         
          cmd = """ 
          INSERT INTO %s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
 
          """
-        cursor.execute(cmd, (self.tableName, UserID,Email, Password, FirstName, Lastname, Address, City, State, Zip, Payment))
+        cursor.execute(cmd, (self.tableName, userID,email, password, firstName, lastname, address, city, state, zip, payment))
 
     def getLoggedIn():
 
