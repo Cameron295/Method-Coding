@@ -302,7 +302,7 @@ while True:
                     x = cursor.fetchall()
                     try:
                          
-                         Cart.addToCart("USERID GOES HERE", x[0][1])
+                         cart.addToCart("USERID GOES HERE", x[0][1])
                          print("%s was added to your cart." % (x[0][0]))
                     except:
                         print("That book does not exist.")
@@ -318,7 +318,7 @@ while True:
                     cursor.execute("SELECT * FROM inventory AS i, cart AS c WHERE c.UserID = %s AND c.ISBN=\"%s\" AND c.ISBN=i.ISBN" % (USERID here, book))
                     x = cursor.fetchall()
                     try:
-                         Cart.removeFromCart(USERID HERE, x[0][0])
+                         cart.removeFromCart(USERID HERE, x[0][0])
                          print("%s was removed from your cart." % (x[0][1]))
                     except:
                          print("That book is not in your cart.")
@@ -326,7 +326,7 @@ while True:
                     connection.close()
                 elif choice3 == "5":
                     #Checkout
-                    Cart.checkOut(USERID HERE)
+                    cart.checkOut(USERID HERE)
                 else:
                     print("Invalid menu option, returning to main menu...")
             else:
