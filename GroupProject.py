@@ -249,7 +249,7 @@ while True:
     choice = str(input())
     if choice == "1":
         #Login function
-        login()
+        User.login()
         print("Logged in.")
         #Main Menu
         while True:
@@ -258,13 +258,13 @@ while True:
             choice2 = str(input())
             if choice2 == "1":
                 #Logout
-                logout()
+                 User.logout()
                 print("Logging out...")
                 break
             elif choice2 == "2":
                 #View Account Information
                 print("Account Info:")
-                viewAccountInformation()
+                 User.viewAccountInformation()
                 
             elif choice2 == "3":
                 # menu options for returning to the last page, viewing inventory, and searching inventory
@@ -332,11 +332,11 @@ while True:
                 print("Invalid option. Try again.")
     elif choice == "2":
         #Account Creation
-        createAccount()
+         User.createAccount()
         print("Account created.")
     elif choice == "3":
         #Logout
-        logout()
+         User.logout()
         print("Logged out.")
         break
     else:
