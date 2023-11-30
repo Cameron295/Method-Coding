@@ -275,11 +275,11 @@ while True:
                 elif choice3 == "2":
                     #View Inventory function
                     print("Viewing inventory...")
-                    Inventory.viewInventory()
+                    inventory.viewInventory()
                 elif choice3 == "3":
                     #Search Inventory function
                     print("Searching inventory...")
-                    Inventory.searchInventory()
+                    inventory.searchInventory()
                 else:
                     print("Invalid menu option, returning to main menu...")
             elif choice2 == "4":
