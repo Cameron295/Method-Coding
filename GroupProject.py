@@ -70,7 +70,7 @@ class User:
         self.tableName = tableName
         self.loggedIn = False
         self.userID = ""
-        connection = sqlite3.connect("databasename")
+        connection = sqlite3("databasename")
         cursor = connection.cursor()
         cmd= "CREATE TABLE IF NOT EXISTS "+ tableName + """ 
         ( UserID varchar(255),
