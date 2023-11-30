@@ -1,88 +1,52 @@
 import sqlite3
 import sys
 
-#CART CLASS
-class Cart:
+#INVENTORY CLASS
+class Inventory:
     def __init__(self, databaseName, tableName):
         self.databaseName = databaseName
         self.tableName = tableName
 
-    def viewCart(self, userID, inventoryDatabase):
-        connection = sqlite3.connect(self.databaseName)
-        cursor = connection.cursor()
-        cursor.execute("SELECT Title FROM %s AS i, %s AS c WHERE c.UserID=%s AND c.ISBN=i.ISBN" % (inventoryDatabase, self.tableName, userID))
-        result = cursor.fetchall()
-        if result == []:
-            print("Your cart is empty.")
+    # displays all items currently in the inventory
+    def viewInventory():
+        # connection and cursor variables
+        sqConn = sqlite3.connect('databaseName.db')
+        sqCur = sqConn.cursor()
+    
+        sqCur.execute(SELECT * FROM Inventory)
+        print(sqCur.fetchall())
+    
+    # asks for a title from the user, then checks for any matches in the database and returns the result
+    # if it's a successful search, displays all results to user. If unsuccessful, informs the user their search failed.
+    def searchInventory():
+        # connection and cursor variables
+        sqConn = sqlite3.connect('databaseName.db')
+        sqCur = sqConn.cursor()
+        
+        # taking search input from user
+        search_title = input("Search Title: ")
+
+        search_return = sqCur.execute(SELECT * FROM Inventory WHERE Title LIKE "%" + search_title + "%")
+        
+        # successful search
+        if search_return != None:
+            print(sqCur.fetchall())
+
+        # unsuccessful search
         else:
-            print("Books in your cart:")
-            for x in result:
-                for y in x:
-                    print(y)
-        cursor.close()
-        connection.close()
+            print("Your search failed to return any results. Check your spelling or try again with a different title.")
+        
+    # decreases stock number of the given ISBN's respective item
+    def decreaseStock(ISBN):
+        # connection and cursor variables
+        sqConn = sqlite3.connect('databaseName.db')
+        sqCur = sqConn.cursor()
 
-    def addToCart(self, userID, ISBN):
-        connection = sqlite3.connect(self.databaseName)
-        cursor = connection.cursor()
-        cursor.execute("SELECT * FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, userID, ISBN))
-        quantity = cursor.fetchall()
-        try:
-            if (quantity[0][2] > 0):
-                cursor.execute("UPDATE %s SET Quantity=%d WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, quantity[0][2] + 1, userID, ISBN))
-        except:
-            cursor.execute("INSERT INTO %s (ISBN, UserID, Quantity) VALUES (\"%s\",%s,%d)" % (self.tableName, ISBN, userID, 1))
-        connection.commit()
-        cursor.close()
-        connection.close()
-
-    def removeFromCart(self, userID, ISBN):
-        connection = sqlite3.connect(self.databaseName)
-        cursor = connection.cursor()
-        cursor.execute("SELECT * FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, userID, ISBN))
-        quantity = cursor.fetchall()
-        try:
-            if (quantity[0][2] > 1):
-                cursor.execute("UPDATE %s SET Quantity=%d WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, quantity[0][2] - 1, userID, ISBN))
-            else:
-                cursor.execute("DELETE FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, userID, ISBN))
-        except:
-            print("That book is not in your cart.")
-        connection.commit()
-        cursor.close()
-        connection.close()
-
-    def checkOut(self, userID):
-        connection = sqlite3.connect(self.databaseName)
-        cursor = connection.cursor()
-        cursor.execute("SELECT * FROM %s WHERE UserID=%s" % (self.tableName, userID))
-        result = cursor.fetchall()
-        if result == []:
-            print("Your cart is empty.")
-        else:
-            print("Checking out...")
-            for x in result:
-                for y in range(x[2]):
-                    #decrease stock not yet added from inventory class
-                    cursor.execute("SELECT Quantity FROM cart WHERE UserID=%s AND ISBN=\"%s\"" % (x[1], x[0]))
-                    quantity = cursor.fetchall()
-                    try:
-                        if (quantity[0][0] > 1):
-                            cursor.execute("UPDATE %s SET Quantity=%d WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, quantity[0][0] - 1, x[1], x[0]))
-                        else:
-                            cursor.execute("DELETE FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, x[1], x[0]))
-                    except:
-                        print("Book removal failed.")
-                    connection.commit()
-        cursor.close()
-        connection.close()
+        # updating stock
+        sqCur.execute(UPDATE Inventory SET Stock = Stock - 1 WHERE ISBN=%s)
 
 
-
-
-
-
-#class User
+#USER CLASS
 class User:
     connection = None
     cursor = None
@@ -181,6 +145,83 @@ class User:
     def getUserID():
 
         return self.userID
+
+
+#CART CLASS
+class Cart:
+    def __init__(self, databaseName, tableName):
+        self.databaseName = databaseName
+        self.tableName = tableName
+
+    def viewCart(self, userID, inventoryDatabase):
+        connection = sqlite3.connect(self.databaseName)
+        cursor = connection.cursor()
+        cursor.execute("SELECT Title FROM %s AS i, %s AS c WHERE c.UserID=%s AND c.ISBN=i.ISBN" % (inventoryDatabase, self.tableName, userID))
+        result = cursor.fetchall()
+        if result == []:
+            print("Your cart is empty.")
+        else:
+            print("Books in your cart:")
+            for x in result:
+                for y in x:
+                    print(y)
+        cursor.close()
+        connection.close()
+
+    def addToCart(self, userID, ISBN):
+        connection = sqlite3.connect(self.databaseName)
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, userID, ISBN))
+        quantity = cursor.fetchall()
+        try:
+            if (quantity[0][2] > 0):
+                cursor.execute("UPDATE %s SET Quantity=%d WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, quantity[0][2] + 1, userID, ISBN))
+        except:
+            cursor.execute("INSERT INTO %s (ISBN, UserID, Quantity) VALUES (\"%s\",%s,%d)" % (self.tableName, ISBN, userID, 1))
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+    def removeFromCart(self, userID, ISBN):
+        connection = sqlite3.connect(self.databaseName)
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, userID, ISBN))
+        quantity = cursor.fetchall()
+        try:
+            if (quantity[0][2] > 1):
+                cursor.execute("UPDATE %s SET Quantity=%d WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, quantity[0][2] - 1, userID, ISBN))
+            else:
+                cursor.execute("DELETE FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, userID, ISBN))
+        except:
+            print("That book is not in your cart.")
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+    def checkOut(self, userID):
+        connection = sqlite3.connect(self.databaseName)
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM %s WHERE UserID=%s" % (self.tableName, userID))
+        result = cursor.fetchall()
+        if result == []:
+            print("Your cart is empty.")
+        else:
+            print("Checking out...")
+            for x in result:
+                for y in range(x[2]):
+                    #decrease stock not yet added from inventory class
+                    cursor.execute("SELECT Quantity FROM cart WHERE UserID=%s AND ISBN=\"%s\"" % (x[1], x[0]))
+                    quantity = cursor.fetchall()
+                    try:
+                        if (quantity[0][0] > 1):
+                            cursor.execute("UPDATE %s SET Quantity=%d WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, quantity[0][0] - 1, x[1], x[0]))
+                        else:
+                            cursor.execute("DELETE FROM %s WHERE UserID=%s AND ISBN=\"%s\"" % (self.tableName, x[1], x[0]))
+                    except:
+                        print("Book removal failed.")
+                    connection.commit()
+        cursor.close()
+        connection.close()
 
 
 #main
