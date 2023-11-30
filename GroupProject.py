@@ -103,7 +103,7 @@ class User:
         connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
         # view all in table with useID in SQL
-        Username= input("UserID: ")
+        username= input("UserID: ")
 
         cmd = """ 
          Create View %s AS 
@@ -111,7 +111,7 @@ class User:
          From %s 
          Where UserID ="%s";
          """
-        cursor.execute(cmd, (self.tableName, User, Username))
+        cursor.execute(cmd, (self.tableName, User, username))
     def createAccount(self):
         connection = sqlite3.connect(self.databaseName)
         cursor = connection.cursor()
