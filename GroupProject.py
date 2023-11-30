@@ -290,7 +290,7 @@ while True:
                     print("Returning to main menu...")
                 elif choice3 == "2":
                     #View Cart
-                    Cart.viewCart(USERID HERE, "Inventory")
+                    cart.viewCart(USERID HERE, "Inventory")
                 elif choice3 == "3":
                     #Add to Cart
                     connection = sqlite3.connect("group8.db")
