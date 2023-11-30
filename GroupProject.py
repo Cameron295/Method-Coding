@@ -275,11 +275,11 @@ while True:
                 elif choice3 == "2":
                     #View Inventory function
                     print("Viewing inventory...")
-                    inventory.viewInventory()
+                    Inventory.viewInventory()
                 elif choice3 == "3":
                     #Search Inventory function
                     print("Searching inventory...")
-                    inventory.searchInventory()
+                    Inventory.searchInventory()
                 else:
                     print("Invalid menu option, returning to main menu...")
             elif choice2 == "4":
@@ -290,7 +290,7 @@ while True:
                     print("Returning to main menu...")
                 elif choice3 == "2":
                     #View Cart
-                    cart.viewCart(USERID HERE, "Inventory")
+                    Cart.viewCart(USERID HERE, "Inventory")
                 elif choice3 == "3":
                     #Add to Cart
                     connection = sqlite3.connect("group8.db")
@@ -301,7 +301,7 @@ while True:
                     cursor.execute("SELECT TITLE, ISBN FROM Inventory WHERE ISBN=\"%s\"" % (book))
                     x = cursor.fetchall()
                     try:
-                         cart.addToCart("USERID GOES HERE", x[0][1])
+                         Cart.addToCart("USERID GOES HERE", x[0][1])
                          print("%s was added to your cart." % (x[0][0]))
                     except:
                          print("That book does not exist.")
@@ -317,7 +317,7 @@ while True:
                     cursor.execute("SELECT * FROM inventory AS i, cart AS c WHERE c.UserID = %s AND c.ISBN=\"%s\" AND c.ISBN=i.ISBN" % (USERID here, book))
                     x = cursor.fetchall()
                     try:
-                         cart.removeFromCart(USERID HERE, x[0][0])
+                         Cart.removeFromCart(USERID HERE, x[0][0])
                          print("%s was removed from your cart." % (x[0][1]))
                     except:
                          print("That book is not in your cart.")
