@@ -119,20 +119,20 @@ class User:
 
         userID = input ("UserID: ")
         email = input ("Email: ") 
-        Password = input ("Password: ")
-        FirstName = input ("First Name: ")
-        LastName = input ("Last Name: ")
-        Address = input ("Address: ")
-        City = input ("City: ")
-        State = input ("State: ")
-        Zip = input ("Zip: ") 
-        Payment = input ("Payment: ") 
+        password = input ("Password: ")
+        firstName = input ("First Name: ")
+        lastName = input ("Last Name: ")
+        address = input ("Address: ")
+        city = input ("City: ")
+        state = input ("State: ")
+        zip = input ("Zip: ") 
+        payment = input ("Payment: ") 
 
         cmd = """ 
          INSERT INTO %s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
 
          """
-        cursor.execute(cmd, (self.tableName, userID,email, Password, FirstName, LastName, Address, City, State, Zip, Payment))
+        cursor.execute(cmd, (self.tableName, userID,email, password, firstName, lastName, address, city, state, zip, payment))
 
     def getLoggedIn(self):
 
