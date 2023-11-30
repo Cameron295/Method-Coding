@@ -184,6 +184,7 @@ class User:
 
 
 #main
+cart = Cart("group8.db", "Cart")
 while True:
     # menu options for logging in, creating an account, and logging out
     print("1.Login\n2.Create account\n3.Logout")
@@ -250,7 +251,7 @@ while True:
                     # taking input selection from the user for ISBN, recorded into variable "book"
                     print("What is the ISBN of the book you would like to remove?")
                     book = str(input())
-                    cursor.execute("SELECT * FROM inventory AS i, cart AS c WHERE c.UserID = %s AND c.ISBN=\"%s\" AND c.ISBN=i.ISBN" % (USERID HERE, book))
+                    cursor.execute("SELECT * FROM inventory AS i, cart AS c WHERE c.UserID = %s AND c.ISBN=\"%s\" AND c.ISBN=i.ISBN" % (USERID here, book))
                     x = cursor.fetchall()
                     try:
                          cart.removeFromCart(USERID HERE, x[0][0])
@@ -269,8 +270,6 @@ while True:
     elif choice == "2":
         #Account Creation
         print("Account created.")
-        while True:
-            print("")
     elif choice == "3":
         #Logout
         print("Logged out.")
